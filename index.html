@@ -1,3 +1,8 @@
+<!--Template Name: vacayhome
+File Name: home.html
+Author Name: ThemeVault
+Author URI: http://www.themevault.net/
+License URI: http://www.themevault.net/license/-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
         <!-- <link rel="icon" href="./static/images/icons/favicon.png"/> -->
-        <title>BOMBAY DARBAR</title>
+        <title>{% block title %}BOMBAY DARBAR{% endblock %}</title>
         <script src="https://kit.fontawesome.com/23fdf0a18e.js" crossorigin="anonymous"></script>
         <!-- Bootstrap core CSS -->
         <link href="./static/css/bootstrap.min.css" rel="stylesheet">
@@ -26,10 +31,15 @@
         <script src="./static/js/instafeed.min.js" type="text/javascript"></script>
         <script src="./static/js/custom.js" type="text/javascript"></script>
         
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css">
     </head>
     <style>
+        body{background-color: #6D0016;}
+        #navbar.scrolled {background-color: #33000B;color:  #FAF3E0;}
         *{font-family: 'Montserrat',sans-serif;}
-        .booking-card{ width: 85%; height: fit-content; padding: 30px;background-color: #2C2A50; text-align: center;color: #FFFFFF;border-radius: 10px;}
+        .booking-card{ width: 85%; height: fit-content; padding: 30px;background-color: #33000B; text-align: center;color: #FFFFFF;border-radius: 10px;}
         .booking-card form{ display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;}
         .input_grp{display: flex; flex-direction: column;  flex: 1 1 ; min-width: 150px;}
         .input_grp button{ margin-top: 19px;  border:none; border-radius: 4px; padding: 10px; background-color: #D4AF37 ; color: #FFFFFF; font-size: large ; }
@@ -43,35 +53,179 @@
         .benifits{width: 80%; display: flex; justify-content: space-around; align-items: center;flex-wrap: wrap;}
         .heading{margin-left: 100px;}
         @media  (max-width:940px){.heading{margin-left: 10px;}}
-        .countup-card {background-color: #2C2A50;padding: 40px;border-radius: 20px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);display: flex;justify-content: space-between;align-items: center;width: 90%;max-width: 1200px; flex-wrap: wrap;}
+        .countup-card {background-color: #33000B;padding: 40px;border-radius: 20px;box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);display: flex;justify-content: space-between;align-items: center;width: 90%;max-width: 1200px; flex-wrap: wrap;}
         .counter-box {text-align: center;flex: 1;}
         .counter-box:not(:last-child) { border-right: 2px solid #f4f4f4; padding-right: 20px; margin-right: 20px;}
         .counter-1 {font-size: 3rem;font-weight: bold;color: #ffffff; /* Bright pinkish-red color */}
         .counter {font-size: 3rem;font-weight: bold;color: #ffffff; /* Bright pinkish-red color */}
         @media (max-width: 768px) {.countup-card {flex-direction: column;align-items: center;justify-content: center;padding: 20px;}.counter-box:not(:last-child){border-right: 0px;    }.counter-box {flex: none;margin: 15px 0;padding: 0;border-right: none;}.counter {font-size: 2.5rem;}}
         @media (max-width: 480px) {.counter {font-size: 2rem;}}
+        @keyframes slide-in {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
+/* Initially hide the element by translating it left and reducing opacity */
+.slide-in {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+/* This class will be added when the element comes into view */
+.slide-in-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+
+
+h3{
+            margin: 0;
+        }
+        a:hover, a:focus{
+            text-decoration: none;
+        }
+        .testimonial{
+            background: #4D241C ;
+            padding: 30px 32px 30px 90px;
+            margin: 50px 20px 50px 120px;
+            border-radius: 0 100px 100px 0;
+            color: #fff;
+            position: relative;
+            border: 5px solid #D0AB6D;
+        }
+        .testimonial .pic{
+            width: 210px;
+            height: 210px;
+            line-height: 200px;
+            border-radius: 50%;
+            border: 14px solid #D0AB6D;
+            position: absolute;
+            top: -15px;
+            left: -120px;
+            overflow: hidden;
+        }
+        .testimonial .pic img{
+            width: 100%;
+            height: 100%;
+        }
+        .testimonial .testimonial-info{
+            display: inline-block;
+            width: 35%;
+            /* float: left; */
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 28px 25px;
+            margin: 0;
+            border-right: 1px solid #D0AB6D;
+        }
+        .testimonial .testimonial-info small{
+            display: block;
+            font-size: 12px;
+            color: #fff;
+            margin-top: 5px;
+        }
+        .testimonial .description{
+            display: inline-block;
+            width: 65%;
+            font-size: 15px;
+            color: #fff;
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+            padding: 28px 0 28px 28px;
+            position: relative;
+        }
+        .testimonial .description:before{
+            content: "\f10d";
+            font-family: fontawesome;
+            position: absolute;
+            top: 0;
+            left: 10px;
+            font-size: 20px;
+            color: #D0AB6D;
+        }
+        .testimonial .description:after{
+            content: "\f10e";
+            font-family: fontawesome;
+            font-size: 20px;
+            color: #D0AB6D;
+            position: absolute;
+            bottom: 5px;
+        }
+        .owl-theme .owl-controls .owl-page.active span,
+        .owl-theme .owl-controls .owl-page span{
+            width: 25px !important;
+            height: 7px !important;
+            background: #4D241C !important;
+            box-sizing: content-box;
+        }
+        .owl-theme .owl-controls .owl-page span{
+            border: 4px solid transparent;
+            background: #D0AB6D !important;
+        }
+        @media only screen and (max-width: 767px){
+            .testimonial{
+                border-radius: 40px;
+                margin: 90px 15px 0;
+                padding: 100px 40px 30px 40px;
+            }
+            .testimonial .pic{
+                position: absolute;
+                top: -85px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+            }
+            .testimonial .testimonial-info{
+                width: 100%;
+                float: none;
+                border-right: none;
+                text-align: center;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            }
+            .testimonial .description{
+                width: 100%;
+            }
+        }
+        @media only screen and (max-width: 480px){
+            .testimonial{ padding: 100px 30px 30px; }
+        }
     </style>
     <body>
+        <!-- {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %} -->
         
             <!-- navbar -->
             <nav id="navbar" >
-<!--                 <ul class="sidebar">
+                <ul class="sidebar">
                   <li class="menu-close" onclick=hideSidebar()><a href="#"><i class="fa-solid fa-xmark fa-2x"></i></a></li>
                   <li><a href="/">Home</a></li>
                   <li><a href="/about">About Us</a></li>
                   <li><a href="#contact">Contact Us</a></li>
                   <li><a href="/gallery">Gallery</a></li>
-                </ul> -->
+                </ul>
                 <ul>
                   <li class="hideOnMobile"><p>BOMBAY DARBAR</p></li>
-<!--                   <li class="hideOnMobile"><a href="/" id="Text">Home</a></li>
+                  <li class="hideOnMobile"><a href="/" id="Text">Home</a></li>
                   <li class="hideOnMobile"><a href="/about" id="Text">About Us</a></li>
                   <li class="hideOnMobile"><a href="#contact" id="Text">Contact Us</a></li>
                   <li class="hideOnMobile"><a href="/gallery" id="Text">Gallery</a></li>
-                  <li class="menu-button" onclick=showSidebar()><a href="#" ><i style="color:  #FAF3E0;" class="fa-solid fa-bars fa-2x"></i></a></li> -->
+                  <li class="menu-button" onclick=showSidebar()><a href="#" ><i style="color:  #FAF3E0;" class="fa-solid fa-bars fa-2x"></i></a></li>
                 </ul>
             </nav>
+            <!-- {%endblock%}
+            {%block content%} -->
             <!-- carousel -->
             <div id="myCarousel1" class="carousel slide" data-ride="carousel"> 
                 <ol class="carousel-indicators">
@@ -80,17 +234,17 @@
                     <li data-target="#myCarousel1" data-slide-to="2"></li>
                 </ol>
                 <div class="carousel-inner">
-                    <div class="item active"> <img src="./static/images/banner.png" style="width:100%; height: 500px" alt="First slide">
+                    <div class="item active"> <img src="./static/images/banner.png" style="width:100%; height: 500px" alt="First slide" >
                         <div class="carousel-caption">
                             <h1>Bombay Darbar<br> Hotel & Restaurant</h1>
                         </div>
                     </div>
-                    <div class="item"> <img src="./static/images/banner2.png" style="width:100%; height: 500px" alt="Second slide">
+                    <div class="item"> <img src="./static/images/banner4.png" style="width:100%; height: 500px" alt="Second slide">
                         <div class="carousel-caption">
                             <h1>Bombay Darbar<br> Hotel & Restaurant</h1>
                         </div>
                     </div>
-                    <div class="item"> <img src="./static/images/banner3.png" style="width:100%; height: 500px" alt="Third slide">
+                    <div class="item"> <img src="./static/images/banner2.png" style="width:100%; height: 500px" alt="Third slide">
                         <div class="carousel-caption">
                             <h1>Bombay Darbar<br> Hotel & Restaurant</h1>
                         </div>
@@ -123,12 +277,12 @@
             <br> <br> <br>
             <!-- description -->
             <div class="banner ">
-                <div class="banner-left container">
-                  <h1 style="color:  #D4AF37;">Luxurious & Flavourish</h1>
+                <div class="banner-left container slide-in">
+                  <h1 style="color:  #D4AF37;" >Luxurious & Flavourish</h1>
                       <hr style="width: 18%; border: 2.5px solid #787878; border-radius: 7px;">
                   <p style="color: #FFFFFF; line-height: 1.5em;">At Bombay Darbar, experience the perfect blend of luxury and culinary excellence. Our elegantly appointed rooms offer a serene escape, while our restaurant serves up a feast of flavors, crafted with the finest ingredients. Whether you're unwinding in style or indulging in a gourmet meal, Bombay Darbar promises a stay that delights all the senses.</p>
                 </div> 
-                <div class="banner-right container" style="display: flex; justify-content: center;" >
+                <div class="banner-right container slide-in2" style="display: flex; justify-content: center;" >
                    <img  src="./static/Untitled (1).png" style="z-index: -10; max-width: 80%; height: auto; border-radius: 15px; " class="img-fluid" >
                 </div>
             </div><br> <br> <br>
@@ -167,6 +321,7 @@
                 </div>
             </div></div>
             <br> <br> <br>
+            
             <div class="location">
                 <div style="margin-left: 10%;">
                 <h1 style="color:  #D4AF37; ">Where are we?</h1>
@@ -175,14 +330,48 @@
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.435938452616!2d75.9097351752991!3d22.525336879525383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962efb17824cd81%3A0xe45088a3904dbb16!2sBombay%20darbar!5e0!3m2!1sen!2sin!4v1725195671177!5m2!1sen!2sin" width="600" height="450" style="border:0; width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
             </div> <br> <br> <br>
-     
-            <footer id="contact" style="background-color: #2C2A50; color: #FAF3E0; padding: 50px 0; border: none; padding-bottom: 0px; margin-top: 0px;">
+            
+              <div class="container">
+                <h1 style="color: #D4AF37;">Testimonials</h1>
+                <hr style="width: 18%; border: 2.5px solid #787878; border-radius: 7px;">
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-8">
+                        <div id="testimonial-slider" class="owl-carousel">
+                            <div class="testimonial">
+                                <div class="pic">
+                                    <img src="https://static.pexels.com/photos/529928/pexels-photo-529928.jpeg" alt="" class="img-responsive">
+                                </div>
+                                <h3 class="testimonial-info">
+                                    krystal
+                                    <small>Web Developer</small>
+                                </h3>
+                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis.</p>
+                            </div>
+            
+                            <div class="testimonial">
+                                <div class="pic">
+                                    <img src="http://www.markharwood.plus.com/images/people%20large/people8.jpg" alt="" class="img-responsive">
+                                </div>
+                                <h3 class="testimonial-info">
+                                    Diana
+                                    <small>Web Designer</small>
+                                </h3>
+                                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <br> <br>
+            <!-- {%endblock%} -->
+            <footer id="contact" style="background-color: #33000B; color: #FAF3E0; padding: 50px 0; border: none; padding-bottom: 0px; margin-top: 0px;">
                 <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; ">
                     
                     <!-- Contact Form -->
                     <div style="flex: 1; min-width: 300px; padding: 20px;">
                         <h3 style="color: #D4AF37;">Contact Us</h3> <br>
-                        <form action="#" method="post">
+                        <form action="#" method="POST">
+                            {% csrf_token %}
+
                             <div style="margin-bottom: 15px;">
                                 <input type="text" name="name" placeholder="Your Name" required 
                                     style="width: 100%; padding: 10px; border: 1px solid #D4AF37; background: #FAF3E0; color: #110F34;">
@@ -233,8 +422,45 @@
                     <p>&copy; 2024 Bombay Darbar Hotel & Restaurant. All rights reserved.</p>
                 </div>
             </footer>
+
+            
             <!-- javascript -->
+            <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
             <script>
+                $(document).ready(function(){
+                    $("#testimonial-slider").owlCarousel({
+                        items:1,
+                        itemsDesktop:[1000,1],
+                        itemsDesktopSmall:[979,1],
+                        itemsTablet:[768,1],
+                        pagination:true,
+                        navigation:false,
+                        navigationText:["",""],
+                        slideSpeed:1000,
+                        singleItem:true,
+                        autoPlay:true
+                    });
+                });
+            </script>
+            <script>
+                
+                document.addEventListener("DOMContentLoaded", function() {
+  const elements = document.querySelectorAll('.slide-in');
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('slide-in-visible');
+        observer.unobserve(entry.target);  // Stop observing once the animation is triggered
+      }
+    });
+  });
+
+  elements.forEach(element => {
+    observer.observe(element);
+  });
+});
             const counterss = document.querySelectorAll('.counter-1');
             const counters = document.querySelectorAll('.counter');   
             counterss.forEach(counter => {
